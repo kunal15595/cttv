@@ -1,1 +1,25 @@
 CTTV
+
+<body>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="papaparse.js"></script>
+	<script type="text/javascript">
+		Papa.SCRIPT_PATH = "./papaparse.js";
+
+		var file = new File([""], "./gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
+
+		Papa.parse("http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv", {
+			download: true,
+			delimiter: "\t",	// auto-detect
+			newline: "",	// auto-detect
+			worker: true,
+			dynamicTyping: true,
+			step: function(row) {
+				console.log("Row:", row);
+			},
+			complete: function() {
+				console.log("All done!");
+			}
+		});
+	</script>
+</body>
