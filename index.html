@@ -6,20 +6,27 @@ CTTV
 	<script type="text/javascript">
 		Papa.SCRIPT_PATH = "./papaparse.js";
 
-		var file = new File([""], "./gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
+		function initParse () {
+			Papa.parse(this.responseText, {
+				header: true,
+				delimiter: "\t",
+				worker: true,
+				dynamicTyping: true,
+				step: function(row) {
+					console.log("Row:", row.data);
+				},
+				complete: function() {
+					console.log("All done!");
+				}
+			});
+		}
 
-		Papa.parse("http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv", {
-			download: true,
-			delimiter: "\t",	// auto-detect
-			newline: "",	// auto-detect
-			worker: true,
-			dynamicTyping: true,
-			step: function(row) {
-				console.log("Row:", row);
-			},
-			complete: function() {
-				console.log("All done!");
-			}
-		});
+		var oReq = new XMLHttpRequest();
+		oReq.addEventListener("load", initParse);
+		oReq.open("GET", "http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
+		oReq.send();
+
+
+		
 	</script>
 </body>
