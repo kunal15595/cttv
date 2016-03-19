@@ -1,32 +1,17 @@
-CTTV
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="layout.css">
 
 <body>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script type="text/javascript" src="papaparse.js"></script>
-	<script type="text/javascript">
-		Papa.SCRIPT_PATH = "./papaparse.js";
+	<script type="text/javascript" src="fisheye.js"></script>
+	<script type="text/javascript" src="d3.tip.v0.6.3.js"></script>
 
-		function initParse () {
-			Papa.parse(this.responseText, {
-				header: true,
-				delimiter: "\t",
-				worker: true,
-				dynamicTyping: true,
-				step: function(row) {
-					console.log("Row:", row.data);
-				},
-				complete: function() {
-					console.log("All done!");
-				}
-			});
-		}
-
-		var oReq = new XMLHttpRequest();
-		oReq.addEventListener("load", initParse);
-		oReq.open("GET", "http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
-		oReq.send();
+	<script type="text/javascript" src="parse.js"></script>
+	<script type="text/javascript" src="viz.js"></script>
 
 
-		
 	</script>
 </body>

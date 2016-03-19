@@ -1,0 +1,86 @@
+.link {
+    stroke: #000;
+    stroke-width: 0.1px;
+}
+.link.sg {
+    stroke: #c00;
+}
+.link.gt {
+    stroke: #aaa;
+}
+.link.gg {
+    stroke: #ff0;
+    stroke-width: 0.3px;
+}
+.node {
+    cursor: move;
+    fill: #ccc;
+    stroke: #000;
+    stroke-width: 0.5px;
+}
+.node.trait {
+    fill: #c00;
+}
+.node.target {
+    fill: #fff;
+}
+.node.gene {
+    fill: #ff0;
+}
+.node.gene2gene {
+    fill: #0f0;
+}
+.node.fixed {
+    /*fill: #f00;*/
+}
+.node:hover {
+    /*fill: #55f;*/
+}
+svg {
+    background-color: black;
+}
+span {
+    color: #fff;
+}
+span.target {
+    color: #fff;
+}
+span.trait {
+    color: #c00;
+}
+span.gene {
+    color: #ff0;
+}
+span.gene2gene {
+    color: #0f0;
+}
+.d3-tip {
+    line-height: 1;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+    border-radius: 2px;
+    max-width: 300px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 3px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: relative;
+    text-align: left;
+}
+
+/* Style northward tooltips differently */
+
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
