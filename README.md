@@ -14,3 +14,10 @@
 
 ## Link :
 http://rawgit.com/kunal15595/cttv/gh-pages/
+
+## Example :
+Screenshot showing exclusive mode(exclusive on trait - "alcohol drinking")
+![Associations](associate.png?raw=true "Associations")
+
+Screenshot showing focus mode(focused on a study)
+![Associations](study.png?raw=true "Associations")
