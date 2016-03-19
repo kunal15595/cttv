@@ -57,30 +57,10 @@ span.gene2gene {
 .d3-tip {
     line-height: 1;
     padding: 8px;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
     border-radius: 2px;
-    max-width: 300px;
-}
-
-/* Creates a small triangle extender for the tooltip */
-
-.d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 3px;
-    width: 100%;
-    line-height: 1;
-    color: rgba(0, 0, 0, 0.8);
-    content: "\25BC";
+    font-size: 15px;
+    max-width: 350px;
     position: relative;
-    text-align: left;
-}
-
-/* Style northward tooltips differently */
-
-.d3-tip.n:after {
-    margin: -1px 0 0 0;
-    top: 100%;
-    left: 0;
 }

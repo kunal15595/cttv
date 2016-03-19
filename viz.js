@@ -37,7 +37,19 @@ var drag = force.drag()
 
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([-5, 20])
+    .direction(function(d) {
+        if (d.x < width/2)
+			if (d.y < height/2)
+				return 'se';
+			else
+				return 'ne';
+		else
+			if (d.y < height/2)
+				return 'sw';
+			else
+				return 'nw';
+
+    })
     .html(function(d) {
         return '<span class="' + d.class + '">' + d.label + '</span>';
     });
@@ -109,48 +121,36 @@ function viz() {
                 return;
             unfade(node, opacity);
         })
-		.on('dblclick', dblclickEvent)
-        .on('click', function(node) {
-			if (timer) {
-				clearTimeout(timer);
-			}
-    		timer = setTimeout(function() {
-				if (!focusMode) {
-					fade(node, 0);
-					focusMode = true;
-					focusedNode = node;
-				} else {
-					unfade(focusedNode, 0);
-					focusMode = false;
-					focusedNode = null;
-					console.log("focus true");
-				}
-			}, 350);
-
-
-
-            d3.event.stopPropagation();
-
-        })
+        .on('dblclick', dblclickEvent)
         .call(drag);
 
-    svg.on('click', function() {
+    svg.on('dblclick', function() {
         if (focusMode && focusedNode) {
             focusMode = false;
-            unfade(focusedNode, 0);
+            show(focusedNode);
+            unfade(focusedNode, opacity);
         }
 
-    })
+    });
 }
 
 function fade(d, opacity) {
-
     link.style("opacity", function(o) {
         return isNeighbourLink(d, o) ? 1 : opacity;
     });
 
     node.style("opacity", function(o) {
         return isNeighbour(d, o) ? 1 : opacity;
+    });
+}
+
+function hide(d) {
+    link.style("visibility", function(o) {
+        return isNeighbourLink(d, o) ? "visible" : "hidden";
+    });
+
+    node.style("visibility", function(o) {
+        return isNeighbour(d, o) ? "visible" : "hidden";
     });
 }
 
@@ -162,6 +162,17 @@ function unfade(d, opacity) {
 
     node.style("opacity", function(o) {
         return 1;
+    });
+}
+
+function show(d) {
+
+    link.style("visibility", function(o) {
+        return "visible";
+    });
+
+    node.style("visibility", function(o) {
+        return "visible";
     });
 }
 
@@ -239,7 +250,19 @@ function tick() {
 }
 
 function dblclickEvent(d) {
+    // console.log("double click");
+    if (!focusMode) {
+        hide(d);
+        focusMode = true;
+        focusedNode = node;
+    } else {
+        show(focusedNode);
+        focusMode = false;
+        focusedNode = null;
+        console.log("focus true");
+    }
     d3.select(this).classed("fixed", d.fixed = false);
+    d3.event.stopPropagation();
 }
 
 function dragstart(d) {

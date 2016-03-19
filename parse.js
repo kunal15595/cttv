@@ -5,10 +5,10 @@ var oReq = new XMLHttpRequest();
 oReq.addEventListener("load", initParse);
 
 // remote
-// oReq.open("GET", "http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
+oReq.open("GET", "http://rawgit.com/kunal15595/cttv/gh-pages/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
 
 // localhost
-oReq.open("GET", "http://localhost/cttv/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
+// oReq.open("GET", "http://localhost/cttv/gwas_catalog_v1.0.1-associations_e84_r2016-03-13.tsv");
 
 oReq.send();
 
@@ -88,7 +88,7 @@ function initParse() {
                         "r": 2,
                         "region": mappedTraits[i],
                         "class": "node gene",
-                        "charge": -70,
+                        "charge": -50,
                         "friction": 0.9,
                         "chargeDistance": 50,
 						"gene2genes": []
@@ -115,8 +115,8 @@ function initParse() {
                         "region": mappedTraits[i],
                         "class": "node gene2gene",
                         "r": Math.log(1 + row.data[0]['PVALUE_MLOG']),
-                        "charge": -100,
-                        "friction": 0.02,
+                        "charge": -50,
+                        "friction": 0.6,
                         "chargeDistance": 50,
 						"genes": [],
 						"traits": [],
@@ -162,7 +162,7 @@ function initParse() {
 
         },
         complete: function() {
-            console.log("All done!");
+            console.log("Database reading completed!");
             // console.log(links);
             viz();
         }
