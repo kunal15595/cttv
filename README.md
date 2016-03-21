@@ -1,10 +1,24 @@
 # Visualization of GWAS catalog.
 
-## Color of nodes represent :
-* **green** - a particular study
-* **white** - a target
-* **red** - a disease/trait
-* **yellow** - other traits
+Refer -- [file headers for GWAS catalog](https://www.ebi.ac.uk/gwas/docs/fileheaders)
+
+## Nodes :
+* **green** -- set of studies that have same set of mapped traits - EFO
+* **white** -- a target
+* **red** -- the disease/trait mainly covered in a study
+* **yellow** -- other traits
+
+## Links :
+* **red-green** -- association of a disease/trait(*red*) to EFO(*green*).
+* **yellow-green** -- association of mapped traits(*yellow*) to EFO(*green*).
+* **white-green** -- association of a target(*white*) to EFO(*green*).
+
+## Associations :
+* **red** -- All studies that cover the trait/disease(*red*), and their associated targets(*white*) and other traits(*yellow*).
+* **white** -- All studies that cover this target(*white*), and their associated traits/diseases(*red*) and other traits(*yellow*).
+* **green** -- All traits(*yellow*), traits/diseases(*red*) and targets(*white*) associated with the set of similar studies this EFO(*green*) represents.
+* **yellow** -- Associated EFO(*green*), all diseases/traits and targets associated with that EFO, and all 1st order associations of this trait with other traits(*yellow*).
+
 
 ## Allowed interactions :
 * Moving the mouse to a region zooms it.
