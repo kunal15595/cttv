@@ -21,7 +21,10 @@ function initParse() {
         dynamicTyping: true,
         step: function(row, parser) {
 
-            if (Math.random() < 0.95)
+            if (Math.random() < 0.85)
+                return;
+
+            if (nodeId > 800)
                 return;
 
             var mappedTraits = row.data[0]['MAPPED_TRAIT'].split(',');
@@ -49,7 +52,7 @@ function initParse() {
                     "charge": -100,
                     "friction": 0.3,
                     "chargeDistance": 20,
-					"gene2genes": []
+                    "gene2genes": []
                 });
 
 
@@ -69,7 +72,7 @@ function initParse() {
                     "charge": -100,
                     "friction": 0.3,
                     "chargeDistance": 20,
-					"gene2genes": []
+                    "gene2genes": []
                 });
             } else {
                 linkTarget = targets[row.data[0]['SNP_ID_CURRENT']];
@@ -91,7 +94,7 @@ function initParse() {
                         "charge": -50,
                         "friction": 0.9,
                         "chargeDistance": 50,
-						"gene2genes": []
+                        "gene2genes": []
                     });
                 } else {
                     linkGene = genes[mappedTraits[i]];
@@ -118,9 +121,9 @@ function initParse() {
                         "charge": -50,
                         "friction": 0.6,
                         "chargeDistance": 50,
-						"genes": [],
-						"traits": [],
-						"targets": []
+                        "genes": [],
+                        "traits": [],
+                        "targets": []
                     });
                     for (var i = nodesInStudy.length - 1; i >= 0; i--) {
                         links.push({
@@ -130,8 +133,8 @@ function initParse() {
                             "linkStrength": 1,
                             "linkDistance": 5
                         });
-						nodes[nodesInStudy[i]].gene2genes.push(nodes[connectingNodeId]);
-						nodes[connectingNodeId].genes.push(nodes[nodesInStudy[i]]);
+                        nodes[nodesInStudy[i]].gene2genes.push(nodes[connectingNodeId]);
+                        nodes[connectingNodeId].genes.push(nodes[nodesInStudy[i]]);
                     }
                 } else {
                     connectingNodeId = gene2genes[nodesInStudy];
@@ -151,11 +154,11 @@ function initParse() {
                     "linkStrength": 0.2,
                     "linkDistance": 50
                 });
-				nodes[linkSource].gene2genes.push(nodes[connectingNodeId]);
-				nodes[linkTarget].gene2genes.push(nodes[connectingNodeId]);
+                nodes[linkSource].gene2genes.push(nodes[connectingNodeId]);
+                nodes[linkTarget].gene2genes.push(nodes[connectingNodeId]);
 
-				nodes[connectingNodeId].traits.push(nodes[linkSource]);
-				nodes[connectingNodeId].targets.push(nodes[linkTarget]);
+                nodes[connectingNodeId].traits.push(nodes[linkSource]);
+                nodes[connectingNodeId].targets.push(nodes[linkTarget]);
 
 
             }
